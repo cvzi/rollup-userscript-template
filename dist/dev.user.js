@@ -4,7 +4,7 @@
 // @namespace   github.com/cvzi
 // @require     https://unpkg.com/react@17/umd/react.development.js
 // @require     https://unpkg.com/react-dom@17/umd/react-dom.development.js
-// @include     https://github.com/cvzi
+// @include     https://github.com/*
 // @version     1.0.0
 // @homepage    https://github.com/cvzi/userscript-rollup
 // @author      cuzi
@@ -12,7 +12,6 @@
 // @grant       GM.getValue
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
-
 'use strict';
 
 (function () {
