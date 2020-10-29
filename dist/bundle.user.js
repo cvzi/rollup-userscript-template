@@ -41,6 +41,9 @@ SOFTWARE.
   'use strict';
 
   var helloWorld = (function () {
+    window.setTimeout(function delayedError() {
+      throw 'I am a delayed error';
+    }, 3000);
     return 'Plain javascript';
   })();
 
@@ -75,3 +78,4 @@ SOFTWARE.
   });
 
 }(ReactDOM, React));
+//# sourceMappingURL=bundle.user.js.map

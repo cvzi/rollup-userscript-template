@@ -9,7 +9,6 @@
 // @homepage    https://github.com/cvzi/userscript-rollup
 // @author      cuzi
 // @license     MIT
-// @connect     localhost
 // @grant       GM.getValue
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
@@ -17,9 +16,10 @@
 'use strict';
 
 (function () {
-  new Promise(function test (resolve, reject) {
+  const url = `http://localhost:8124/bundle.user.js?${Date.now()}`
+  new Promise(function loadBundleFromServer (resolve, reject) {
     GM.xmlHttpRequest({
-      url: `http://localhost:8124/bundle.user.js?${Date.now()}`,
+      url: url,
       onload: function (r) {
         if (r.status !== 200) {
           return reject(r)
@@ -28,9 +28,6 @@
       },
       onerror: e => reject(e)
     }).catch(e => { /* ignore */ })
-  }).then(function (s) {
-    eval(s) // eslint-disable-line no-eval
-    return true
   }).catch(function (e) {
     const log = function (obj) {
       try {
@@ -48,5 +45,9 @@
     } else {
       log(e)
     }
+  }).then(function (s) {
+    /* eslint-disable no-eval */
+    eval(`${s}
+//# sourceURL=${url}`)
   })
 })()

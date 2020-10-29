@@ -15,10 +15,6 @@ const grants = 'grant' in meta ? meta.grant : []
 if (grants.indexOf('GM.xmlHttpRequest') === -1) {
   grants.push('GM.xmlHttpRequest')
 }
-const connects = 'connect' in meta ? meta.connect : []
-if (connects.indexOf('localhost') === -1) {
-  connects.push('localhost')
-}
 const devMetablock = metablock({
   file: './meta.json',
   override: {
@@ -28,11 +24,11 @@ const devMetablock = metablock({
     homepage: pkg.homepage,
     author: pkg.author,
     license: pkg.license,
-    grant: grants,
-    connect: connects
+    grant: grants
   }
 })
-const outContent = devMetablock.renderChunk(devScriptContent)
+const result = devMetablock.renderChunk(devScriptContent, null, {sourcemap:false})
+const outContent = typeof result === 'string' ? result : result.code
 fs.writeFileSync(devScriptOutFile, outContent)
 console.log(green(`created ${bold(devScriptOutFile)}. Please install in Tampermonkey http://localhost:8124/dev.user.js`))
 

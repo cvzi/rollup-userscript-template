@@ -18,6 +18,7 @@ export default {
     format: 'iife',
     name: 'rollupUserScript',
     banner: () => ('/*\n' + fs.readFileSync('./LICENSE', 'utf8') + '*/\n\n/* globals React, ReactDOM */'),
+    sourcemap: true,
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM'
