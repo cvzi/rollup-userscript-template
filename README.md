@@ -10,6 +10,7 @@ It bundles typescript, react and JSX/TSX script files into a single userscript f
 *   JSX/TSX support
 *   Metablock generation from [package.json](package.json) and [meta.json](meta.json) with [rollup-plugin-userscript-metablock](https://github.com/FlandreDaisuki/rollup-plugin-userscript-metablock)
 *   Development script in [dist/dev.user.js](dist/dev.user.js). Automatically fetches the newest version on F5
+*   Source map support
 
 ## Installation
 
