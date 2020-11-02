@@ -12,12 +12,12 @@ const pkg = require('./package.json')
 fs.mkdir('dist/', { recursive: true }, () => null)
 
 export default {
-  input: 'src/main.js',
+  input: 'src/index.js',
   output: {
     file: 'dist/bundle.user.js',
     format: 'iife',
     name: 'rollupUserScript',
-    banner: () => ('/*\n' + fs.readFileSync('./LICENSE', 'utf8') + '*/\n\n/* globals React, ReactDOM */'),
+    banner: () => ('\n/*\n' + fs.readFileSync('./LICENSE', 'utf8') + '*/\n\n/* globals React, ReactDOM */'),
     sourcemap: true,
     globals: {
       react: 'React',
@@ -54,5 +54,5 @@ export default {
       }
     })
   ],
-  external: id => /^react(-dom)?/.test(id)
+  external: id => /^react(-dom)?$/.test(id)
 }

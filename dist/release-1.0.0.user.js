@@ -78,4 +78,3 @@ SOFTWARE.
   });
 
 }(ReactDOM, React));
-//# sourceMappingURL=bundle.user.js.map
