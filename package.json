@@ -10,13 +10,13 @@
         "typescript",
         "react"
     ],
-    "homepage": "https://github.com/cvzi/userscript-rollup",
+    "homepage": "https://github.com/cvzi/rollup-userscript-template",
     "repository": {
         "type": "git",
-        "url": "github:cvzi/Bandcamp-script-deluxe-edition"
+        "url": "github:cvzi/rollup-userscript-template"
     },
     "bugs": {
-        "url": "https://github.com/cvzi/Bandcamp-script-deluxe-edition/issues",
+        "url": "https://github.com/cvzi/rollup-userscript-template/issues",
         "email": "cuzi@openmail.cc"
     },
     "author": "cuzi",
