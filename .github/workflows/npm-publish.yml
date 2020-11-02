@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: 15
           registry-url: https://npm.pkg.github.com/
-      - run: node $GITHUB_WORKSPACE.github/workflows/gpr-name.js @$GITHUB_REPOSITORY package.json package-lock.json
+      - run: node $GITHUB_WORKSPACE/.github/workflows/gpr-name.js @$GITHUB_REPOSITORY package.json package-lock.json
       - run: npm ci
       - run: npm publish
         env:
