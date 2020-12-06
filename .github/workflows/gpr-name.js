@@ -1,7 +1,6 @@
 const fs = require('fs')
-const path = require('path')
 
-function changeName(fileName, name) {
+function changeName (fileName, name) {
   const data = JSON.parse(fs.readFileSync(fileName, 'utf8'))
   data.name = name
   fs.writeFileSync(fileName, JSON.stringify(data, null, 2))
