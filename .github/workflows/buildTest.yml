@@ -11,4 +11,3 @@ jobs:
         npm install
         npm run build
         npm run build:release
-        npm run build:singledomain
