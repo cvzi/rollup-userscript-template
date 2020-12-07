@@ -5,13 +5,16 @@
 // @require     https://unpkg.com/react@17/umd/react.development.js
 // @require     https://unpkg.com/react-dom@17/umd/react-dom.development.js
 // @include     https://github.com/*
-// @version     1.1.5
+// @version     1.1.6
 // @homepage    https://github.com/cvzi/rollup-userscript-template
 // @author      cuzi
 // @license     MIT
 // @grant       GM.getValue
 // @grant       GM.xmlHttpRequest
+// @grant       GM.setValue
 // ==/UserScript==
+/*  globals GM */
+
 'use strict';
 
 (function () {
@@ -28,16 +31,27 @@
       onerror: e => reject(e)
     }).catch(e => { /* ignore */ })
   }).catch(function (e) {
-    const log = function (obj) {
+    const log = function (obj, b) {
+      let prefix = 'loadBundleFromServer: '
       try {
-        console.log(GM.info.script.name + ': ' + obj)
-      } catch (e) {
-        console.log('loadBundleFromServer', obj)
+        prefix = GM.info.script.name + ': '
+      } catch (e) {}
+      if (b) {
+        console.log(prefix + obj, b)
+      } else {
+        console.log(prefix, obj)
       }
     }
     if (e && 'status' in e) {
       if (e.status <= 0) {
         log('Server is not responding')
+        GM.getValue('scriptlastsource3948218', false).then(function (src) {
+          if (src) {
+            log('%cExecuting cached script version', 'color: Crimson; font-size:x-large;')
+            /* eslint-disable no-eval */
+            eval(src)
+          }
+        })
       } else {
         log('HTTP status: ' + e.status)
       }
@@ -48,5 +62,6 @@
     /* eslint-disable no-eval */
     eval(`${s}
 //# sourceURL=${url}`)
+    GM.setValue('scriptlastsource3948218', s)
   })
 })()
