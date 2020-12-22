@@ -5,7 +5,7 @@
 // @require     https://unpkg.com/react@17/umd/react.development.js
 // @require     https://unpkg.com/react-dom@17/umd/react-dom.development.js
 // @include     https://github.com/*
-// @version     1.1.6
+// @version     1.2.0
 // @homepage    https://github.com/cvzi/rollup-userscript-template
 // @author      cuzi
 // @license     MIT
