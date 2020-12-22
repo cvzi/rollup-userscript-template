@@ -3,7 +3,7 @@
 'use strict';
 
 (function () {
-  const url = `http://localhost:8124/bundle.user.js?${Date.now()}`
+  const url = `http://localhost:%PORT%/bundle.user.js?${Date.now()}`
   new Promise(function loadBundleFromServer (resolve, reject) {
     GM.xmlHttpRequest({
       url: url,
@@ -44,9 +44,11 @@
       log(e)
     }
   }).then(function (s) {
-    /* eslint-disable no-eval */
-    eval(`${s}
+    if (s) {
+      /* eslint-disable no-eval */
+      eval(`${s}
 //# sourceURL=${url}`)
-    GM.setValue('scriptlastsource3948218', s)
+      GM.setValue('scriptlastsource3948218', s)
+    }
   })
 })()

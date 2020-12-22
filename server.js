@@ -12,7 +12,7 @@ const meta = require('./meta.json')
 
 console.log('👀 watch & serve 🤲\n###################\n')
 
-const port = 8124
+const port = pkg.config.port
 const destDir = 'dist/'
 const devScriptInFile = 'dev.user.js'
 
@@ -33,7 +33,7 @@ server.listen(port, () => {
 // Create the userscript for development 'dist/dev.user.js'
 const devScriptOutFile = path.join(destDir, devScriptInFile)
 console.log(cyan(`generate development userscript ${bold('package.json')}, ${bold('meta.json')}, ${bold(devScriptInFile)} → ${bold(devScriptOutFile)}...`))
-const devScriptContent = fs.readFileSync(devScriptInFile, 'utf8')
+const devScriptContent = fs.readFileSync(devScriptInFile, 'utf8').replace(/%PORT%/gm, port.toString())
 const grants = 'grant' in meta ? meta.grant : []
 if (grants.indexOf('GM.xmlHttpRequest') === -1) {
   grants.push('GM.xmlHttpRequest')
