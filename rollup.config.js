@@ -26,10 +26,9 @@ export default {
   },
   plugins: [
     replace({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    replace({
-      ENVIRONMENT: JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      ENVIRONMENT: JSON.stringify('production'),
+      preventAssignment: true
     }),
     nodeResolve({ extensions: ['.js', '.ts', '.tsx'] }),
     typescriptPlugin({ typescript }),
