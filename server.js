@@ -69,7 +69,7 @@ watcher.on('event', event => {
   if (event.code === 'BUNDLE_START') {
     console.log(cyan(`bundles ${bold(event.input)} → ${bold(event.output.map(fullPath => path.relative(path.resolve(__dirname), fullPath)).join(', '))}...`))
   } else if (event.code === 'BUNDLE_END') {
-    console.log(green(`created ${bold(event.output.map(fullPath => path.relative(path.resolve(__dirname), fullPath)).join(', '))} in ${event.duration}s`))
+    console.log(green(`created ${bold(event.output.map(fullPath => path.relative(path.resolve(__dirname), fullPath)).join(', '))} in ${event.duration}ms`))
   } else if (event.code === 'ERROR') {
     console.log(bold(red('⚠ Error')))
     console.log(event.error)
