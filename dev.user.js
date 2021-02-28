@@ -6,6 +6,7 @@
   const url = `http://localhost:%PORT%/bundle.user.js?${Date.now()}`
   new Promise(function loadBundleFromServer (resolve, reject) {
     const req = GM.xmlHttpRequest({
+      method: 'GET',
       url: url,
       onload: function (r) {
         if (r.status !== 200) {
