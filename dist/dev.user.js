@@ -20,7 +20,8 @@
 (function () {
   const url = `http://localhost:8124/bundle.user.js?${Date.now()}`
   new Promise(function loadBundleFromServer (resolve, reject) {
-    GM.xmlHttpRequest({
+    const req = GM.xmlHttpRequest({
+      method: 'GET',
       url: url,
       onload: function (r) {
         if (r.status !== 200) {
@@ -29,7 +30,10 @@
         resolve(r.responseText)
       },
       onerror: e => reject(e)
-    }).catch(e => { /* ignore */ })
+    })
+    if (req && 'catch' in req) {
+      req.catch(e => { /* ignore */ })
+    }
   }).catch(function (e) {
     const log = function (obj, b) {
       let prefix = 'loadBundleFromServer: '
