@@ -44,17 +44,22 @@ if (grants.indexOf('GM.setValue') === -1) {
 if (grants.indexOf('GM.getValue') === -1) {
   grants.push('GM.getValue')
 }
+const override = {
+  name: pkg.name + ' [dev]',
+  version: pkg.version,
+  description: pkg.description,
+  homepage: pkg.homepage,
+  author: pkg.author,
+  license: pkg.license,
+  grant: grants
+}
+if ('connect' in meta) {
+  override.connect = meta.connect
+  override.connect.push('localhost')
+}
 const devMetablock = metablock({
   file: './meta.json',
-  override: {
-    name: pkg.name + ' [dev]',
-    version: pkg.version,
-    description: pkg.description,
-    homepage: pkg.homepage,
-    author: pkg.author,
-    license: pkg.license,
-    grant: grants
-  }
+  override: override
 })
 
 const result = devMetablock.renderChunk(devScriptContent, null, { sourcemap: false })
