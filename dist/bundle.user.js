@@ -2,10 +2,10 @@
 // @name        rollup-userscript-template
 // @description Bundle typescript, react and JSX/TSX script files into a single userscript file with rollup
 // @namespace   github.com/cvzi
-// @require     https://unpkg.com/react@17/umd/react.development.js
-// @require     https://unpkg.com/react-dom@17/umd/react-dom.development.js
-// @include     https://github.com/*
-// @version     1.2.2
+// @require     https://unpkg.com/react@18/umd/react.development.js
+// @require     https://unpkg.com/react-dom@18/umd/react-dom.development.js
+// @match       https://github.com/*
+// @version     1.2.4
 // @homepage    https://github.com/cvzi/rollup-userscript-template
 // @author      cuzi
 // @license     MIT
@@ -49,14 +49,12 @@ SOFTWARE.
           var d = Object.getOwnPropertyDescriptor(e, k);
           Object.defineProperty(n, k, d.get ? d : {
             enumerable: true,
-            get: function () {
-              return e[k];
-            }
+            get: function () { return e[k]; }
           });
         }
       });
     }
-    n['default'] = e;
+    n["default"] = e;
     return Object.freeze(n);
   }
 
@@ -100,5 +98,5 @@ SOFTWARE.
     }), document.body);
   });
 
-}(ReactDOM, React));
+})(ReactDOM, React);
 //# sourceMappingURL=bundle.user.js.map
