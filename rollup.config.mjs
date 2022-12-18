@@ -6,8 +6,8 @@ import typescriptPlugin from '@rollup/plugin-typescript'
 import typescript from 'typescript'
 import metablock from 'rollup-plugin-userscript-metablock'
 
-const fs = require('fs')
-const pkg = require('./package.json')
+import fs from 'fs'
+import pkg from './package.json' assert { type: 'json' }
 
 fs.mkdir('dist/', { recursive: true }, () => null)
 

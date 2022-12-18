@@ -1,5 +1,5 @@
-import { red, green, cyan, bold } from 'colorette'
-const loadConfigFile = require('rollup/dist/loadConfigFile')
+const { red, green, cyan, bold } = require('colorette')
+const { loadConfigFile } = require('rollup/dist/loadConfigFile.js')
 const path = require('path')
 const fs = require('fs')
 const http = require('http')
@@ -67,7 +67,7 @@ const outContent = typeof result === 'string' ? result : result.code
 fs.writeFileSync(devScriptOutFile, outContent)
 console.log(green(`created ${bold(devScriptOutFile)}. Please install in Tampermonkey: `) + hyperlink(`http://localhost:${port}/${devScriptInFile}`))
 
-loadConfigFile(path.resolve(__dirname, 'rollup.config.js')).then(
+loadConfigFile(path.resolve(__dirname, 'rollup.config.mjs')).then(
   async ({ options, warnings }) => {
     // Start rollup watch
     const watcher = rollup.watch(options)

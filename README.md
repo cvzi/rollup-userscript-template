@@ -60,4 +60,4 @@ or on Windows
 ## Other
 
 *   Typescript types for GM.* object are incomplete. See [types/GM/index.d.ts](types/GM/index.d.ts)
-*   Currently react is not bundled, but imported with @require. To bundle it, remove `output.globals` and `external` from [rollup.config.js](rollup.config.js)
+*   Currently react is not bundled, but imported with @require. To bundle it, remove `output.globals` and `external` from [rollup.config.mjs](rollup.config.mjs)

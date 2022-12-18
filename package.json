@@ -24,12 +24,12 @@
     "license": "MIT",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "npx rollup --config rollup.config.js",
-        "watch": "npx rollup --config rollup.config.js --watch",
-        "serve": "node -r esm server.js",
-        "start": "node -r esm server.js",
-        "build:release": "npx rollup --config rollup.config.js --sourcemap 0 --file dist/release-$npm_package_version.user.js",
-        "build:release:win32": "npx rollup --config rollup.config.js --sourcemap 0 --file dist\\release-%npm_package_version%.user.js",
+        "build": "npx rollup --config rollup.config.mjs",
+        "watch": "npx rollup --config rollup.config.mjs --watch",
+        "serve": "node server.js",
+        "start": "node server.js",
+        "build:release": "npx rollup --config rollup.config.mjs --sourcemap 0 --file dist/release-$npm_package_version.user.js",
+        "build:release:win32": "npx rollup --config rollup.config.mjs --sourcemap 0 --file dist\\release-%npm_package_version%.user.js",
         "version": "npm run build:release && git add dist/release-$npm_package_version.user.js",
         "prepublishOnly": "npm run build:release && git add dist/release-$npm_package_version.user.js"
     },
