@@ -1,4 +1,4 @@
-const { red, green, cyan, bold } = require('colorette')
+const { red, green, cyan, bold, italic } = require('colorette')
 const { loadConfigFile } = require('rollup/dist/loadConfigFile.js')
 const path = require('path')
 const fs = require('fs')
@@ -6,9 +6,13 @@ const http = require('http')
 const handler = require('serve-handler')
 const rollup = require('rollup')
 const metablock = require('rollup-plugin-userscript-metablock')
+const assert = require('assert').strict
+const util = require('util')
 
 const pkg = require('./package.json')
 const meta = require('./meta.json')
+
+const httpGetStatus = util.promisify((url, cb) => http.get(url, (res) => cb(null, res.statusCode)))
 
 console.log('👀 watch & serve 🤲\n###################\n')
 
@@ -59,7 +63,7 @@ if ('connect' in meta) {
 }
 const devMetablock = metablock({
   file: './meta.json',
-  override: override
+  override
 })
 
 const result = devMetablock.renderChunk(devScriptContent, null, { sourcemap: false })
@@ -67,15 +71,38 @@ const outContent = typeof result === 'string' ? result : result.code
 fs.writeFileSync(devScriptOutFile, outContent)
 console.log(green(`created ${bold(devScriptOutFile)}. Please install in Tampermonkey: `) + hyperlink(`http://localhost:${port}/${devScriptInFile}`))
 
+let outFiles = []
 loadConfigFile(path.resolve(__dirname, 'rollup.config.mjs')).then(
   async ({ options, warnings }) => {
     // Start rollup watch
     const watcher = rollup.watch(options)
 
+    // Run tests
+    if (process.argv.indexOf('--test') !== -1) {
+      console.log(italic('\n###### Test Mode ######\n'))
+      setTimeout(async function () {
+        console.log(italic('Running tests...'))
+        console.log(`Checking http://localhost:${port}/${devScriptInFile}`)
+        assert.equal(await httpGetStatus(`http://localhost:${port}/${devScriptInFile}`), 200, `http://localhost:${port}/${devScriptInFile}`)
+        if (outFiles) {
+          for (let i = 0; i < outFiles.length; i++) {
+            const urlPath = outFiles[i].replace(/\\/g, '/')
+            console.log(`Checking http://localhost:${port}/${urlPath}`)
+            assert.equal(await httpGetStatus(`http://localhost:${port}/${urlPath}`), 200, `http://localhost:${port}/${urlPath}`)
+          }
+        }
+        console.log(italic('Stopping server and watcher after 10 seconds and exiting.'))
+        watcher.close()
+        server.close()
+        process.exit()
+      }, 10000)
+    }
+
     watcher.on('event', event => {
       if (event.code === 'BUNDLE_START') {
         console.log(cyan(`bundles ${bold(event.input)} → ${bold(event.output.map(fullPath => path.relative(path.resolve(__dirname), fullPath)).join(', '))}...`))
       } else if (event.code === 'BUNDLE_END') {
+        outFiles = event.output.map(fullPath => path.relative(path.resolve(destDir), fullPath))
         console.log(green(`created ${bold(event.output.map(fullPath => path.relative(path.resolve(__dirname), fullPath)).join(', '))} in ${event.duration}ms`))
       } else if (event.code === 'ERROR') {
         console.log(bold(red('⚠ Error')))
