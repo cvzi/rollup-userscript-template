@@ -1,6 +1,6 @@
 {
     "name": "rollup-userscript-template",
-    "version": "1.2.5",
+    "version": "1.3.0",
     "description": "Bundle typescript, react and JSX/TSX script files into a single userscript file with rollup",
     "keywords": [
         "userscript",
@@ -35,8 +35,8 @@
         "prepublishOnly": "npm run build:release && git add dist/release-$npm_package_version.user.js"
     },
     "devDependencies": {
-        "@babel/cli": "^7.19.3",
-        "@babel/core": "^7.20.5",
+        "@babel/cli": "^7.20.7",
+        "@babel/core": "^7.20.12",
         "@babel/plugin-proposal-class-properties": "^7.18.6",
         "@babel/preset-react": "^7.18.6",
         "@rollup/plugin-babel": "^6.0.3",
@@ -49,7 +49,7 @@
         "esm": "^3.2.25",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "rollup": "^3.7.5",
+        "rollup": "^3.9.1",
         "rollup-plugin-userscript-metablock": "^0.3.1",
         "serve": "^14.1.2",
         "tslib": "^2.4.1",
