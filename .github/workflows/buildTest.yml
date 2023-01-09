@@ -9,8 +9,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 19
-    - name: Test npm run build
-      run: |
-        npm install
-        npm run build
-        npm run build:release
+    - run: npm install
+    - run: npm run build
+    - run: npm run build:release
+    - run: npm run testserve
