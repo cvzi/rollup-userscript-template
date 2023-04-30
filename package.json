@@ -35,25 +35,25 @@
         "prepublishOnly": "npm run build:release && git add dist/release-$npm_package_version.user.js"
     },
     "devDependencies": {
-        "@babel/cli": "^7.20.7",
-        "@babel/core": "^7.20.12",
+        "@babel/cli": "^7.21.5",
+        "@babel/core": "^7.21.5",
         "@babel/plugin-proposal-class-properties": "^7.18.6",
         "@babel/preset-react": "^7.18.6",
         "@rollup/plugin-babel": "^6.0.3",
-        "@rollup/plugin-commonjs": "^24.0.0",
-        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-commonjs": "^24.1.0",
+        "@rollup/plugin-node-resolve": "^15.0.2",
         "@rollup/plugin-replace": "^5.0.2",
-        "@rollup/plugin-typescript": "^11.0.0",
-        "@types/react": "^18.0.26",
-        "colorette": "^2.0.19",
+        "@rollup/plugin-typescript": "^11.1.0",
+        "@types/react": "^18.2.0",
+        "colorette": "^2.0.20",
         "esm": "^3.2.25",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "rollup": "^3.9.1",
-        "rollup-plugin-userscript-metablock": "^0.3.1",
-        "serve": "^14.1.2",
-        "tslib": "^2.4.1",
-        "typescript": "^5.0.2"
+        "rollup": "^3.21.2",
+        "rollup-plugin-userscript-metablock": "^0.3.3",
+        "serve": "^14.2.0",
+        "tslib": "^2.5.0",
+        "typescript": "^5.0.4"
     },
     "config": {
         "port": "8124"
