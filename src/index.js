@@ -4,14 +4,16 @@ import helloWorld from './examplePlain.js'
 import getSomeValueFromGM from './exampleTypedGM.ts'
 import SomeList from './exampleReact.tsx'
 
-ReactDOM.render(
-  <SomeList name={helloWorld} />,
-  document.body
+document.body.innerHTML = ''
+
+const root = ReactDOM.createRoot(document.body.appendChild(document.createElement('div')))
+
+root.render(
+  <SomeList name={helloWorld} />
 )
 
 getSomeValueFromGM().then(function (s) {
-  ReactDOM.render(
-    <SomeList name={s} />,
-    document.body
+  root.render(
+    <SomeList name={s} />
   )
 })
