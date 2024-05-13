@@ -88,13 +88,15 @@ SOFTWARE.
       }
   }
 
-  ReactDOM__namespace.render( /*#__PURE__*/React.createElement(SomeList, {
+  document.body.innerHTML = '';
+  const root = ReactDOM__namespace.createRoot(document.body.appendChild(document.createElement('div')));
+  root.render( /*#__PURE__*/React.createElement(SomeList, {
     name: helloWorld
-  }), document.body);
+  }));
   getSomeValueFromGM().then(function (s) {
-    ReactDOM__namespace.render( /*#__PURE__*/React.createElement(SomeList, {
+    root.render( /*#__PURE__*/React.createElement(SomeList, {
       name: s
-    }), document.body);
+    }));
   });
 
 })(ReactDOM, React);
