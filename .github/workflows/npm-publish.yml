@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: 22
       - run: npm ci
       #- run: npm test
       - run: npm run build
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: 22
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm publish
@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: 22
           registry-url: https://npm.pkg.github.com/
       - run: node $GITHUB_WORKSPACE/.github/workflows/gpr-name.js @$GITHUB_REPOSITORY package.json package-lock.json
       - run: npm ci
