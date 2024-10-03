@@ -5,7 +5,7 @@
 // @require     https://unpkg.com/react@18/umd/react.development.js
 // @require     https://unpkg.com/react-dom@18/umd/react-dom.development.js
 // @match       https://github.com/*
-// @version     1.3.0
+// @version     1.4.0
 // @homepage    https://github.com/cvzi/rollup-userscript-template
 // @author      cuzi
 // @license     MIT
@@ -13,6 +13,7 @@
 // @grant       GM.xmlHttpRequest
 // @grant       GM.setValue
 // ==/UserScript==
+
 /*  globals GM */
 
 'use strict';

@@ -5,12 +5,13 @@
 // @require     https://unpkg.com/react@18/umd/react.development.js
 // @require     https://unpkg.com/react-dom@18/umd/react-dom.development.js
 // @match       https://github.com/*
-// @version     1.3.0
+// @version     1.4.0
 // @homepage    https://github.com/cvzi/rollup-userscript-template
 // @author      cuzi
 // @license     MIT
 // @grant       GM.getValue
 // ==/UserScript==
+
 
 /*
 MIT License
@@ -90,11 +91,11 @@ SOFTWARE.
 
   document.body.innerHTML = '';
   const root = ReactDOM__namespace.createRoot(document.body.appendChild(document.createElement('div')));
-  root.render( /*#__PURE__*/React.createElement(SomeList, {
+  root.render(/*#__PURE__*/React.createElement(SomeList, {
     name: helloWorld
   }));
   getSomeValueFromGM().then(function (s) {
-    root.render( /*#__PURE__*/React.createElement(SomeList, {
+    root.render(/*#__PURE__*/React.createElement(SomeList, {
       name: s
     }));
   });
